@@ -5,7 +5,7 @@ import '../../enzyme.setup'
 
 
 
-let mockProducts, wrapper;
+let mockProducts, wrapper ,productSelectFn;
 beforeEach(() => {
   // This is run before every test
  
@@ -14,7 +14,8 @@ beforeEach(() => {
     {id: 2, name: 'Mock Product 2', brand: 'MockBrandB'},
     {id: 3, name: 'Mock Product 3', brand: 'MockBrandC'},
   ];
-  wrapper = shallow(<ProductList products={mockProducts}/>);
+  productSelectFn = (productSelected) => console.log('You selected', productSelected);
+  wrapper = shallow(<ProductList products={mockProducts} onProductSelect={productSelectFn}/>);
 });
 
 it('should render an <li> element for every product in `props.products`', () => {
@@ -28,3 +29,8 @@ it('should display the brand name in each `<li>` element', () => {
   const firstElement = wrapper.find('li').first();
   expect(firstElement.contains(mockProducts[0].brand)).toEqual(true);
 });
+it('should call `props.onProductSelect` when an <li> is clicked', () => {
+  const firstElement = wrapper.find('li').first();
+  firstElement.simulate('click');
+ });
+ 

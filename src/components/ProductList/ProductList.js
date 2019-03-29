@@ -18,6 +18,6 @@ function ProductList (props) {
 // permet de faire un check du type des props qui vont etre passés a notre component
 ProductList.propTypes = {
 	products: PropTypes.array.isRequired,
-	//onProductSelect: PropTypes.func.isRequired
+	onProductSelect: PropTypes.func.isRequired
 };
   export default ProductList;
